@@ -7,8 +7,8 @@ pipeline {
 
     options {
         timestamps()
-        buildDiscarder(logRotator(numToKeepStr: '10'))
         disableConcurrentBuilds()
+        buildDiscarder(logRotator(numToKeepStr: '10'))
     }
 
     stages {
@@ -21,13 +21,17 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                bat 'call npm install'
+                bat '''
+                "C:\\Windows\\System32\\cmd.exe" /c npm install
+                '''
             }
         }
 
         stage('Build React App') {
             steps {
-                bat 'call npm run build'
+                bat '''
+                "C:\\Windows\\System32\\cmd.exe" /c npm run build
+                '''
             }
         }
 
